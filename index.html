@@ -5,10 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculadora simples</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -17,9 +14,7 @@
       justify-content: center;
       font-family: "Segoe UI", Arial, sans-serif;
       background: linear-gradient(160deg, #1e3a5f, #4f46e5);
-      color: #1f2937;
     }
-
     .caixa {
       width: min(420px, 92vw);
       background: #ffffff;
@@ -27,70 +22,22 @@
       padding: 28px 24px;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
     }
-
-    h1 {
-      margin: 0 0 18px;
-      text-align: center;
-      color: #1e3a5f;
-    }
-
-    h2 {
-      margin: 18px 0 10px;
-      font-size: 16px;
-      color: #4f46e5;
-    }
-
-    label {
-      display: block;
-      margin: 10px 0 6px;
-      font-size: 14px;
-      color: #374151;
-    }
-
-    input, select, button {
-      width: 100%;
-      border-radius: 10px;
-      font-size: 16px;
-    }
-
-    input, select {
-      border: 1px solid #d1d5db;
-      padding: 12px;
-      outline: none;
-    }
-
-    input:focus, select:focus {
-      border-color: #4f46e5;
-    }
-
+    h1 { margin: 0 0 18px; text-align: center; color: #1e3a5f; }
+    h2 { margin: 18px 0 10px; font-size: 16px; color: #4f46e5; }
+    label { display: block; margin: 10px 0 6px; font-size: 14px; color: #374151; }
+    input, select, button { width: 100%; border-radius: 10px; font-size: 16px; }
+    input, select { border: 1px solid #d1d5db; padding: 12px; outline: none; }
+    input:focus, select:focus { border-color: #4f46e5; }
     button {
-      margin-top: 12px;
-      border: none;
-      padding: 12px;
-      background: #4f46e5;
-      color: white;
-      font-weight: 600;
-      cursor: pointer;
+      margin-top: 12px; border: none; padding: 12px;
+      background: #4f46e5; color: white; font-weight: 600; cursor: pointer;
     }
-
-    button:hover {
-      background: #3730a3;
-    }
-
+    button:hover { background: #3730a3; }
     .resultado {
-      margin: 12px 0 0;
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: #eef2ff;
-      color: #1e3a5f;
-      font-weight: 600;
+      margin: 12px 0 0; padding: 10px 12px; border-radius: 10px;
+      background: #eef2ff; color: #1e3a5f; font-weight: 600;
     }
-
-    .linha {
-      height: 1px;
-      margin: 20px 0 4px;
-      background: #e5e7eb;
-    }
+    .linha { height: 1px; margin: 20px 0 4px; background: #e5e7eb; }
   </style>
 </head>
 <body>
@@ -129,35 +76,28 @@
   </main>
 
   <script>
-    const num1 = document.getElementById("num1");
-    const num2 = document.getElementById("num2");
-    const operacao = document.getElementById("operacao");
-    const btnBasica = document.getElementById("btn-basica");
-    const resultadoBasica = document.getElementById("resultado-basica");
+    document.getElementById("btn-basica").addEventListener("click", function () {
+      const num1 = document.getElementById("num1").value;
+      const num2 = document.getElementById("num2").value;
+      const operacao = document.getElementById("operacao").value;
+      const resultadoBasica = document.getElementById("resultado-basica");
 
-    const valor = document.getElementById("valor");
-    const percentual = document.getElementById("percentual");
-    const btnPorcentagem = document.getElementById("btn-porcentagem");
-    const resultadoPorcentagem = document.getElementById("resultado-porcentagem");
-
-    btnBasica.addEventListener("click", function () {
-      if (num1.value === "" || num2.value === "") {
+      if (num1 === "" || num2 === "") {
         resultadoBasica.textContent = "Preencha os dois números.";
         return;
       }
 
-      const a = Number(num1.value);
-      const b = Number(num2.value);
-      const op = operacao.value;
+      const a = Number(num1);
+      const b = Number(num2);
       let resultado;
 
-      if (op === "+") {
+      if (operacao === "+") {
         resultado = a + b;
-      } else if (op === "-") {
+      } else if (operacao === "-") {
         resultado = a - b;
-      } else if (op === "*") {
+      } else if (operacao === "*") {
         resultado = a * b;
-      } else if (op === "/") {
+      } else if (operacao === "/") {
         if (b === 0) {
           resultadoBasica.textContent = "Não dá para dividir por zero.";
           return;
@@ -168,14 +108,18 @@
       resultadoBasica.textContent = "Resultado: " + resultado;
     });
 
-    btnPorcentagem.addEventListener("click", function () {
-      if (valor.value === "" || percentual.value === "") {
+    document.getElementById("btn-porcentagem").addEventListener("click", function () {
+      const valor = document.getElementById("valor").value;
+      const percentual = document.getElementById("percentual").value;
+      const resultadoPorcentagem = document.getElementById("resultado-porcentagem");
+
+      if (valor === "" || percentual === "") {
         resultadoPorcentagem.textContent = "Preencha o valor e a porcentagem.";
         return;
       }
 
-      const total = Number(valor.value);
-      const pct = Number(percentual.value);
+      const total = Number(valor);
+      const pct = Number(percentual);
       const resultado = (total * pct) / 100;
 
       resultadoPorcentagem.textContent = "Resultado: " + resultado;
